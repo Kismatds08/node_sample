@@ -1,17 +1,54 @@
-const bodyParser = require('body-parser');
-const {response} = require('express');
-const express = require('express');
-const app = express();
+//console.log('Sample node application')
 
-app.listen(3000, () => console.log ('listening to 3000'));
+const bodyParser = require('body-parser')
+const express = require('express')
+const MongoClient = require('mongodb').MongoClient
+const connectionStr = 'mongodb+srv://kismatds08:Kismat109547@cluster0.ltztp.mongodb.net/<dbname>?retryWrites=true&w=majority'
+// MongoClient.connect(connectionStr, (err, client) => {​​​​ 
+//     // ... do something here 
+//     if(err) return console.error(err)
+//     console.log('Connected to DB')
+// }​​​​)
+MongoClient.connect(
+    connectionStr,
+    { useUnifiedTopology: true },
+    (err, client) => {
+    if (err) return console.error(err);
+    console.log("Connected to Database Server");
+    const db = client.db('star-wars-quotes')
+    const quotesCollections = db.collection('quotes')
+    app.post('/quotes', (req,res) => {
+        quotesCollections.insertOne(req.body)
+        .then( result => {console.log(result)})
+        .catch(error => console.error(error))
+    })
+    }
+   );
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+const app = express()
 
-//app.get((first argument)endpoint, like '/', (second argument)callback function)
-app.get('/',(req,res) => res.sendFile(__dirname + '/index.html'));
+app.listen( 3000, () => console.log("Listing in 3000") )
 
-app.post('/quotes', (req, res) => {
-    console.log(req.body);
-})
+app.use( bodyParser.urlencoded(
+    {extended: true}
+    ) )
+
+//app.get( endPoint example '/', callback function )
+app.get('/', (req, res) => res.sendFile(__dirname + '/index.html') )
+
+
+
+// Explore
+// use
+// get
+// post
+// express
+// body parser
+// req, res
+
+
+
+
+
+
+
