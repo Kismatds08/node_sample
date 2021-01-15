@@ -1,6 +1,5 @@
-const { json } = require("body-parser")
-
-app.use(express.static('public'))
+//const { json } = require("body-parser")
+// app.use(bodyParser.jason())
 
 const update = document.querySelector('#update-button')
 update.addEventListener('click', () => {
@@ -11,10 +10,15 @@ update.addEventListener('click', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: Dark
+                name: 'Darth Vader',
+                quote: 'metalLink'
             })
 
         }
 
     )
 })
+// app.put('/quotes',(req,res)=>{
+//     console.log(req.body)
+// })
+
