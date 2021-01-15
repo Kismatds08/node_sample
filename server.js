@@ -19,7 +19,7 @@ MongoClient.connect(
     const quotesCollections = db.collection('quotes')
     app.post('/quotes', (req,res) => {
         quotesCollections.insertOne(req.body)
-        .then( result => {console.log(result)})
+        .then( result => {res.redirect('/')})
         .catch(error => console.error(error))
     })
     }
@@ -27,7 +27,7 @@ MongoClient.connect(
 
 const app = express()
 
-app.listen( 3000, () => console.log("Listing in 3000") )
+app.listen( 3000, () => console.log("Listeing in 3000") )
 
 app.use( bodyParser.urlencoded(
     {extended: true}
