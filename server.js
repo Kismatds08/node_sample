@@ -22,9 +22,9 @@ MongoClient.connect(
         .then( result => {res.redirect('/')})
         .catch(error => console.error(error))
     })
-    app.get('/',(req. res)=> {
-        db.collecton('quotes').find().toArray()
-        .then(result => { res.render(index.ejs,{quotes: result})})
+    app.get('/',(req, res)=> {
+        db.collection('quotes').find().toArray()
+        .then(result => { res.render('index.ejs',{quotes: result})})
         .catch(error=> console.error(error))   
     } )
     
