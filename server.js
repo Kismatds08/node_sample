@@ -22,12 +22,12 @@ MongoClient.connect(
         .then( result => {res.redirect('/')})
         .catch(error => console.error(error))
     })
-
     app.get('/',(req. res)=> {
         db.collecton('quotes').find().toArray()
-        .then(result => {console.log(result)})
-        .catch(error=> console.error(error))
+        .then(result => { res.render(index.ejs,{quotes: result})})
+        .catch(error=> console.error(error))   
     } )
+    
     }
    ); 
 
@@ -40,7 +40,7 @@ app.use( bodyParser.urlencoded(
     ) )
 
 //app.get( endPoint example '/', callback function )
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html') )
+ //app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
 
 
 
