@@ -22,8 +22,14 @@ MongoClient.connect(
         .then( result => {res.redirect('/')})
         .catch(error => console.error(error))
     })
+
+    app.get('/',(req. res)=> {
+        db.collecton('quotes').find().toArray()
+        .then(result => {console.log(result)})
+        .catch(error=> console.error(error))
+    } )
     }
-   );
+   ); 
 
 const app = express()
 
